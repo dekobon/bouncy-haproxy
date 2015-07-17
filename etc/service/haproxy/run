@@ -21,8 +21,11 @@ if [ -e /etc/default/haproxy ]; then
 	. /etc/default/haproxy
 fi
 
-# Make sure the config file exists
-test -f "$CONFIG" || exit 0
+# Make sure the config file exists, if it doesn't we add a default file
+if [ ! -f "$CONFIG" ]; then
+        cp /etc/haproxy/haproxy.cfg /etc/haproxy/config/haproxy.cfg && \
+        cat /etc/haproxy/haproxy-template.cfg >> /etc/haproxy/config/haproxy.cfg
+fi
 
 # Assert correct permissions on run directory
 [ -d "$RUNDIR" ] || mkdir "$RUNDIR"
