@@ -20,7 +20,7 @@ RUN chmod +x /etc/service/haproxy/run
 ADD etc/haproxy/haproxy-template.cfg /etc/haproxy/haproxy-template.cfg
 RUN mkdir -pv /etc/haproxy/config && \
     sed -i 's/\/dev\/log/127.0.0.1/g' /etc/haproxy/haproxy.cfg && \
-    sed  '/^.*chroot.*$/d' /etc/haproxy/haproxy.cfg && \
+    sed -i '/^.*chroot.*$/d' /etc/haproxy/haproxy.cfg && \
     cp -v /etc/haproxy/haproxy.cfg /etc/haproxy/config/haproxy.cfg && \
     cat /etc/haproxy/haproxy-template.cfg >> /etc/haproxy/config/haproxy.cfg
 
