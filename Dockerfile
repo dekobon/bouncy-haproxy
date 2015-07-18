@@ -24,4 +24,8 @@ RUN mkdir -pv /etc/haproxy/config && \
     cp -v /etc/haproxy/haproxy.cfg /etc/haproxy/config/haproxy.cfg && \
     cat /etc/haproxy/haproxy-template.cfg >> /etc/haproxy/config/haproxy.cfg
 
+# Add haproxy bounce script
+ADD usr/local/bin/bounce_haproxy /usr/local/bin/bounce_haproxy
+RUN chmod +x /usr/local/bin/bounce_haproxy
+
 VOLUME ["/etc/haproxy/config"]

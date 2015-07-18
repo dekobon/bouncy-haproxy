@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+haproxy -f /etc/haproxy/config/haproxy.cfg \
+        -p /var/run/haproxy.pid \
+        -D \
+        -sf $(cat /var/run/haproxy.pid)
