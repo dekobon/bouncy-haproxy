@@ -31,8 +31,14 @@ in the following ways:
     HAProxy configuration persistance across reboots.
  2. You will need to modify the default configuration file /etc/haproxy/config/haproxy.cfg
     to conform to your particular setup.
- 3. If you add servers inside of the ### start/end pool ### comment block you can use utilities
-    to template in linked servers into your configuration.
+ 3. If you add servers inside of the ### start/end pool ### comment block you can use 
+    utilities to template in linked servers into your configuration.
+ 4. Take a look at update-lb-pool.sh for an example of a script that you could
+    run from a machine configured with a DOCKER_HOST variable. This script will
+    allow you to update your haproxy.cfg to include all hosts that match a given
+    prefix (as is predictably created by docker-compose). For example, you could add
+    all instances of your site container by doing: 
+    ./update_lb_pool.sh cluster_site 80 cluster_haproxy_1
 
 ### Runtime Hints
 
