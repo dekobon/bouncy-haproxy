@@ -6,6 +6,8 @@ HAProxy image. Understandably, the official image needs to conform to general
 standards that may be at odds with an operationalized image. This image differs
 in the following ways:
 
+### Differences Between library/haproxy
+
  1. It is using phusion-base image in order to run as a multi-process Docker
     container.
  2. It is running a syslog daemon and cron in order to properly handle log
@@ -22,5 +24,17 @@ in the following ways:
     extend it to be able to write their own processes that monitor an endpoint
     or a DOCKER_HOST and then modify the configuration. Next, they can then
     bounce HAProxy and have a new server pool loaded.
-    
+
+### Setup Hints
+
+ 1. You probably want to mount a data volume on /etc/haproxy/config in order to make your 
+    HAProxy configuration persistance across reboots.
+ 2. You will need to modify the default configuration file /etc/haproxy/config/haproxy.cfg
+    to conform to your particular setup.
+ 3. If you add servers inside of the ### start/end pool ### comment block you can use utilities
+    to template in linked servers into your configuration.
+
+### Runtime Hints
+
+ 1. You can reload the proxy configuration at runtime by running the script: /usr/local/bin/bounce_haproxy
  
