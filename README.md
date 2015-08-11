@@ -1,7 +1,7 @@
 Bouncy HAProxy
 ==============
 
-This Docker images aims to overcome some of the shortcomings of the official
+This Docker image aims to overcome some of the shortcomings of the official
 HAProxy image. Understandably, the official image needs to conform to general
 standards that may be at odds with an operationalized image. This image differs
 in the following ways:
