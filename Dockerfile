@@ -1,16 +1,16 @@
 # dekobon/bouncy-haproxy:latest
 
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.9.18
 MAINTAINER Elijah Zupancic <elijah@zupancic.name>
 
 # Syslog setup
 RUN sed -i '/source s_src {/,/};/d' /etc/syslog-ng/syslog-ng.conf
 COPY etc/syslog-ng/conf.d/sources.conf /etc/syslog-ng/conf.d/sources.conf
 
-RUN apt-add-repository ppa:vbernat/haproxy-1.5 && \
+RUN apt-add-repository ppa:vbernat/haproxy-1.6 && \
     apt-get -q update && \
     apt-get upgrade -qy -o Dpkg::Options::="--force-confold" && \
-    apt-get install -qy haproxy curl wget vim nano && \
+    apt-get install -qy haproxy curl wget vim nano vim-haproxy && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
